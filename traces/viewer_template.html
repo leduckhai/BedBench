@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BED Reasoning Traces</title>
+<style>
+:root {
+  --bg: #fbfaf8; --panel: #ffffff; --ink: #1d1d1f; --muted: #6b6b70; --line: #e4e2dd;
+  --accent: #2f5bd3; --ok: #1f8a4c; --no: #c2412d; --chip: #f1efea; --mark-alpha: 70%;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141416; --panel: #1c1c1f; --ink: #ececef; --muted: #9d9da6; --line: #2e2e33;
+    --accent: #8aa8ff; --ok: #5fd08e; --no: #ff8a75; --chip: #26262b; --mark-alpha: 38%;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141416; --panel: #1c1c1f; --ink: #ececef; --muted: #9d9da6; --line: #2e2e33;
+  --accent: #8aa8ff; --ok: #5fd08e; --no: #ff8a75; --chip: #26262b; --mark-alpha: 38%;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; padding: 18px 24px 12px;
+  border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 5; }
+header h1 { font-size: 18px; margin: 0; letter-spacing: -0.01em; }
+header .sub { color: var(--muted); font-size: 13px; }
+header .spacer { flex: 1; }
+button { font: inherit; color: inherit; background: var(--chip); border: 1px solid var(--line);
+  border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+button:hover { border-color: var(--muted); }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: calc(100vh - 60px); }
+nav { border-right: 1px solid var(--line); padding: 14px 10px; position: sticky; top: 60px;
+  height: calc(100vh - 60px); overflow: auto; background: var(--panel); }
+nav button { display: flex; width: 100%; justify-content: space-between; align-items: center;
+  background: transparent; border: 1px solid transparent; text-align: left; margin-bottom: 2px; padding: 6px 8px; }
+nav button[aria-current="true"] { background: var(--chip); border-color: var(--line); font-weight: 600; }
+nav .tid { color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 6px; }
+.dots { display: flex; gap: 3px; flex-shrink: 0; margin-left: 10px; }
+nav button > span:first-child { flex: 1; min-width: 0; }
+.dot { width: 7px; height: 7px; border-radius: 50%; }
+.dot.ok { background: var(--ok); } .dot.no { background: var(--no); }
+main { padding: 22px 28px 60px; max-width: 1100px; }
+h2 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.01em; }
+.meta { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+.meta b { color: var(--ink); font-weight: 600; }
+details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px 14px; margin-bottom: 16px; }
+summary { cursor: pointer; color: var(--muted); font-size: 13px; }
+details pre { white-space: pre-wrap; font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; margin: 10px 0 4px; }
+.images { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 22px; }
+figure { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+figure img { width: 100%; display: block; cursor: zoom-in; }
+figcaption { font-size: 12px; color: #555; padding: 5px 8px; border-top: 1px solid #eee; background: #fafafa; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.tabs button[aria-selected="true"] { background: var(--panel); border-color: var(--accent); box-shadow: inset 0 -2px 0 var(--accent); font-weight: 600; }
+.verdict { font-weight: 600; }
+.verdict.ok { color: var(--ok); } .verdict.no { color: var(--no); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.card-head { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.card-head .model { font-size: 17px; font-weight: 650; }
+.badge { font-size: 12px; padding: 1px 8px; border-radius: 999px; background: var(--chip); color: var(--muted); border: 1px solid var(--line); }
+.source { color: var(--muted); font-size: 13px; flex-basis: 100%; }
+.answer { font-variant-numeric: tabular-nums; }
+.answer code { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--chip); padding: 1px 6px; border-radius: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 18px; border-bottom: 1px solid var(--line); align-items: center; }
+.legend .hint { color: var(--muted); font-size: 12px; margin-right: 4px; }
+.chip { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; padding: 3px 9px; border-radius: 999px; }
+.chip .sw { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+.chip[aria-pressed="false"] { opacity: 0.4; text-decoration: line-through; }
+.chip .n { color: var(--muted); font-variant-numeric: tabular-nums; }
+.text { padding: 16px 18px 22px; white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14.5px; line-height: 1.7; }
+mark { background: color-mix(in srgb, var(--c) var(--mark-alpha), transparent); color: inherit; border-radius: 3px; padding: 1px 0; }
+mark .tag { font-size: 10.5px; font-weight: 600; vertical-align: super; margin-left: 3px; padding: 0 5px; border-radius: 4px;
+  background: var(--c); color: #1d1d1f; white-space: nowrap; }
+mark.off { background: transparent; } mark.off .tag { display: none; }
+.pager { display: flex; justify-content: space-between; margin-top: 18px; gap: 10px; }
+.pager span { color: var(--muted); font-size: 13px; align-self: center; }
+.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.75); display: none; align-items: center; justify-content: center; z-index: 10; }
+.lightbox img { max-width: 92vw; max-height: 92vh; background: #fff; border-radius: 8px; }
+@media (max-width: 760px) {
+  header { position: static; padding: 14px 16px 10px; }
+  .layout { grid-template-columns: 1fr; }
+  nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); display: flex; overflow-x: auto; gap: 4px; padding: 8px 16px; }
+  nav button { width: auto; flex-shrink: 0; } nav .name, nav .dots { display: none; }
+  main { padding: 16px 16px 48px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>BED · Annotated reasoning traces</h1>
+  <span class="sub" id="summary"></span>
+  <span class="spacer"></span>
+  <button id="theme" title="Toggle light/dark">◐ Theme</button>
+</header>
+<div class="layout">
+  <nav id="nav" aria-label="Tasks"></nav>
+  <main id="main"></main>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Image preview"><img alt=""></div>
+<script type="application/json" id="data">__DATA__</script>
+<script>
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const LABELS = Object.fromEntries(DATA.labels.map(l => [l.name, l]));
+const ALL = DATA.tasks.flatMap(t => t.traces.map(tr => ({ task: t, trace: tr })));
+const hidden = new Set();
+let cur = 0;
+
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null) continue;
+    if (k === "style") n.style.cssText = v; else if (k.startsWith("on")) n.addEventListener(k.slice(2), v); else n.setAttribute(k, v);
+  }
+  for (const k of kids.flat()) if (k != null) n.append(k instanceof Node ? k : document.createTextNode(String(k)));
+  return n;
+};
+const fmt = v => {
+  if (v == null) return "(no answer)";
+  if (typeof v === "object" && !Array.isArray(v)) {
+    const keys = Object.keys(v);
+    if (keys.length === 1) return fmt(v[keys[0]]);
+    return keys.map(k => `${k}: ${JSON.stringify(v[k])}`).join(", ");
+  }
+  return Array.isArray(v) ? v.join(", ") : String(v);
+};
+
+document.getElementById("summary").textContent =
+  `${ALL.length} traces · ${ALL.reduce((s, x) => s + x.trace.spans.length, 0)} labeled spans · ${DATA.tasks.length} tasks`;
+
+function renderNav() {
+  const nav = document.getElementById("nav");
+  nav.replaceChildren(...DATA.tasks.map(t => el("button", {
+      "aria-current": String(ALL[cur].task.id === t.id),
+      onclick: () => go(ALL.findIndex(x => x.task.id === t.id)) },
+    el("span", {}, el("span", { class: "tid" }, t.id), el("span", { class: "name" }, t.name)),
+    el("span", { class: "dots", "aria-hidden": "true" }, t.traces.map(tr => el("span", { class: "dot " + (tr.correct ? "ok" : "no") })))
+  )));
+}
+
+function traceText(tr) {
+  const box = el("div", { class: "text" });
+  let pos = 0;
+  for (const s of tr.spans) {
+    if (s.start > pos) box.append(tr.text.slice(pos, s.start));
+    const lab = LABELS[s.label] || { color: "#ccc" };
+    const m = el("mark", { style: `--c:${lab.color}`, "data-label": s.label, title: s.label },
+      tr.text.slice(s.start, s.end), el("span", { class: "tag" }, s.label));
+    if (hidden.has(s.label)) m.classList.add("off");
+    box.append(m);
+    pos = s.end;
+  }
+  box.append(tr.text.slice(pos));
+  return box;
+}
+
+function render() {
+  const { task: t, trace: tr } = ALL[cur];
+  const counts = {};
+  tr.spans.forEach(s => counts[s.label] = (counts[s.label] || 0) + 1);
+  const legend = el("div", { class: "legend" }, el("span", { class: "hint" }, "Labels (click to hide):"),
+    DATA.labels.filter(l => counts[l.name]).map(l => el("button", {
+      class: "chip", style: `--c:${l.color}`, title: l.meaning, "aria-pressed": String(!hidden.has(l.name)),
+      onclick: () => { hidden.has(l.name) ? hidden.delete(l.name) : hidden.add(l.name); render(); } },
+      el("span", { class: "sw" }), l.name, el("span", { class: "n" }, counts[l.name]))));
+  if (!tr.spans.length) legend.append(el("span", { class: "hint" }, "No labeled spans in this trace."));
+
+  const main = document.getElementById("main");
+  main.replaceChildren(
+    el("h2", {}, `${t.id} · ${t.name}`),
+    el("div", { class: "meta" }, "Item ", el("b", {}, t.item), " · Ground truth: ", el("b", {}, fmt(t.ground_truth))),
+    el("details", {}, el("summary", {}, "Prompt given to the model (Thinking mode)"), el("pre", {}, t.prompt)),
+    el("div", { class: "images" }, t.images.map(im => el("figure", {},
+      el("img", { src: im.src, alt: im.caption, loading: "lazy", onclick: () => zoom(im.src) }), el("figcaption", {}, im.caption)))),
+    el("div", { class: "tabs", role: "tablist" }, t.traces.map(x => el("button", {
+        role: "tab", "aria-selected": String(x === tr), onclick: () => go(ALL.findIndex(a => a.trace === x)) },
+      x.model, " ", el("span", { class: "verdict " + (x.correct ? "ok" : "no") }, x.correct ? "✓" : "✗")))),
+    el("article", { class: "card" },
+      el("div", { class: "card-head" },
+        el("span", { class: "model" }, tr.model),
+        el("span", { class: "badge" }, tr.model_type),
+        el("span", { class: "answer" }, "Answer: ", el("code", {}, fmt(tr.model_answer))),
+        el("span", { class: "verdict " + (tr.correct ? "ok" : "no") }, tr.correct ? "✓ correct" : "✗ incorrect"),
+        el("span", { class: "source" }, "Trace: " + tr.trace_source)),
+      legend, traceText(tr)),
+    el("div", { class: "pager" },
+      el("button", { onclick: () => go(cur - 1), disabled: cur === 0 ? "" : null }, "← Previous"),
+      el("span", {}, `Trace ${cur + 1} of ${ALL.length} · use ← → keys`),
+      el("button", { onclick: () => go(cur + 1), disabled: cur === ALL.length - 1 ? "" : null }, "Next →")));
+  renderNav();
+}
+
+function go(i) {
+  if (i < 0 || i >= ALL.length) return;
+  cur = i;
+  history.replaceState(null, "", "#" + ALL[i].trace.trace_id);
+  render();
+  window.scrollTo({ top: 0 });
+}
+function zoom(src) {
+  const lb = document.getElementById("lightbox");
+  lb.querySelector("img").src = src; lb.style.display = "flex";
+}
+document.getElementById("lightbox").addEventListener("click", e => e.currentTarget.style.display = "none");
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") document.getElementById("lightbox").style.display = "none";
+  if (e.target.closest("input, textarea")) return;
+  if (e.key === "ArrowRight") go(cur + 1);
+  if (e.key === "ArrowLeft") go(cur - 1);
+});
+document.getElementById("theme").addEventListener("click", () => {
+  const root = document.documentElement;
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+});
+const fromHash = ALL.findIndex(x => x.trace.trace_id === decodeURIComponent(location.hash.slice(1)));
+cur = fromHash >= 0 ? fromHash : 0;
+render();
+</script>
+</body>
+</html>

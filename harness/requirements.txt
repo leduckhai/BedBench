@@ -1,0 +1,5 @@
+# versions used to verify the paper's numbers (Python 3.12)
+aiohttp==3.13.5
+datasets==4.8.4
+pillow==12.2.0
+scikit-learn==1.8.0

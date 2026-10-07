@@ -1,0 +1,5 @@
+# versions used to verify pixel-identical regeneration (Python 3.12)
+numpy==2.4.4
+matplotlib==3.10.8
+pillow==12.2.0
+datasets==4.8.4
