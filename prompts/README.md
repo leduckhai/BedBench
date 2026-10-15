@@ -27,3 +27,15 @@ File names use the paper's task numbers (`Task_11.md` is T11, and so on).
 | `Task_12.md` | T12: Reconstruct | main evaluation |
 | `Task_13.md` | T13: Mixture-of-Shapes, identify the invalid silhouette | main evaluation |
 | `Task_13_detect_positive.md` | T13: Mixture-of-Shapes, identify the valid silhouette | main evaluation |
+
+
+Additional control prompts in `non_thinking/`, copied verbatim from the experiments:
+
+| File | Control |
+|---|---|
+| `Task_5_no_example.md` | T5 with the example removed |
+| `Task_5_valid_example.md` | T5 with the 11-block example |
+| `Task_5_2d.md` | T5 on separated tiles |
+| `Task_7_counts.md` | T7 from explicit counts (`{{counts}}` placeholder) |
+
+See [harness controls](../harness/controls.md) for execution.

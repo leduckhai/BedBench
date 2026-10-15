@@ -68,6 +68,15 @@ and visual condition).
 Rebuilding the request text for 11,400 saved requests (every supported condition) reproduces the stored prompts exactly,
 including MCQ options, container sizes, and the T11 image legend.
 
-The released model outputs (`outputs/`, same layout; see its README) cover every condition in the paper,
+The released model outputs (`outputs/`, same layout; see its README) cover the main evaluation and original controls,
 including the frontier models, the image-removal and answer-format controls, the reasoning-budget sweep,
-factorized T5 querying, and the fine-tuned model; `bed_eval score outputs` reproduces the paper's numbers.
+factorized T5 querying, and the fine-tuned model. Additional controls are documented in [controls.md](controls.md); their outputs and post-hoc
+analyses are separate. `bed_eval score` skips factorized single-color records, which need a separate
+merge-and-score analysis.
+
+
+## Additional controls
+
+[controls.md](controls.md) documents the T5 prompt-example ablation, T5 separated-tile inference,
+and T7 from self-predicted or oracle counts. All use modules in this `bed_eval` package and prompts
+from `../prompts/non_thinking/`. Offline checks: `python -m unittest discover -s tests -v`.

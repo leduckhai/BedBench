@@ -52,3 +52,12 @@ Output: `results/<encoder>_patch_mean_linear.json` (all metrics) and `results/su
   Re-extracting CLIP-L features from datasets rebuilt with `../generator`
   (macOS arm64, MPS, float32) reproduces the cached features bit for bit (checked on `T1_uncolor` and
   `T11_invalid_uncolor`); other hardware or numeric precision can give slightly different features.
+
+
+## Token-level and connector probes
+
+[Token probe instructions](token_probes.md) cover `bed_probing.extract_tokens` and
+`bed_probing.probe_tokens`: Qwen/Gemma tower tokens, Qwen connector output, attention and token-sum
+readouts, and training-size curves. These use the same package as the pooled-feature probes above.
+
+Offline checks (from `probing/`): `python -m unittest discover -s tests -v`.

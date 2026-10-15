@@ -112,3 +112,21 @@ All parameters live in `config.py` (`GeneratorConfig`) and `scenes/config.py` (`
   loop, so visibility decisions (and therefore the random stream) are unchanged.
 - Pixel identity was verified with Python 3.12, NumPy 2.4.4, and Matplotlib 3.10.8 (Agg). Other
   Matplotlib or FreeType versions can change antialiasing slightly while leaving the geometry unchanged.
+
+
+## T5 separated-tile control
+
+From `generator/` with its requirements installed:
+
+```bash
+python -m bed_generator.build_tiles --dataset /path/to/dataset/T5_color --out /path/to/tile_inputs
+```
+
+The builder reads a local `datasets.save_to_disk` T5_color dataset. It preserves the original color
+dictionary order and shuffles tiles with `random.Random(int(sample_id))`, matching the original
+experiment. Each block is one separated square, with the generator's colors, black edges, image
+settings, and a gap of 0.6 block units. The builder writes PNGs and a manifest with relative image
+paths and unchanged count targets.
+
+Run inference on these images using `bed_eval.run_t5_2d` from `harness/`; see
+[additional controls](../harness/controls.md).
