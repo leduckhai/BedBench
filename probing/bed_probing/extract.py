@@ -1,4 +1,4 @@
-"""Extract frozen-encoder features for the probed BED configurations and cache them as .npz.
+"""Extract frozen-encoder features for the probed BedBench configurations and cache them as .npz.
 
     python -m bed_probing.extract --encoder siglip2 --dataset DATASET --cache-dir features
     python -m bed_probing.extract --vlm Qwen/Qwen3.5-27B --alias qwen27b-tower \

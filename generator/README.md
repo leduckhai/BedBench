@@ -1,6 +1,6 @@
-# BED generator
+# BedBench generator
 
-Generates the two image pools of BED and builds the evaluation datasets from them:
+Generates the two image pools of BedBench and builds the evaluation datasets from them:
 
 - **Voxel objects** (T1–T12, `bed_generator`): connected voxel objects, two query views, colors,
   canonical projections, projection distractors, all rendered variants, and a `manifest.csv` with the

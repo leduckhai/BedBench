@@ -1,6 +1,6 @@
-# BED probing
+# BedBench probing
 
-Frozen-encoder probing of the BED task targets (paper appendix "Probing frozen encoders"): supervised
+Frozen-encoder probing of the BedBench task targets (paper appendix "Probing frozen encoders"): supervised
 linear probes on mean-pooled patch features of 14 frozen encoders, plus three training-free consistency
 analyses. The encoders are SigLIP-2 so400m, DINOv2-L, CLIP-L, Depth-Anything-V2-L, and the vision
 towers inside Qwen3.5 (0.8B, 2B, 4B, 9B, 27B, 35B-A3B) and Gemma4 (E2B, E4B, 26B-A4B, 31B).
@@ -10,7 +10,7 @@ towers inside Qwen3.5 (0.8B, 2B, 4B, 9B, 27B, 35B-A3B) and Gemma4 (E2B, E4B, 26B
 ```bash
 pip install -r requirements.txt
 
-# 1. features (or skip: extract extras/probing_features.tar from the BED dataset repo and use --cache-dir probing_features)
+# 1. features (or skip: extract extras/probing_features.tar from the BedBench dataset repo and use --cache-dir probing_features)
 python -m bed_probing.extract --encoder siglip2 --dataset ../generator/bed_dataset --cache-dir features
 python -m bed_probing.extract --vlm Qwen/Qwen3.5-27B --alias qwen27b-tower \
     --dataset ../generator/bed_dataset --cache-dir features --dtype bfloat16
@@ -45,7 +45,7 @@ Output: `results/<encoder>_patch_mean_linear.json` (all metrics) and `results/su
   run. scikit-learn's `GroupKFold` breaks ties between equal-size groups with a platform-dependent sort,
   so recomputing folds on another CPU architecture gives different splits; the saved folds make the
   probe results platform-independent.
-- **Features.** `extras/probing_features.tar` in the BED dataset repo holds the cached features of the
+- **Features.** `extras/probing_features.tar` in the BedBench dataset repo holds the cached features of the
   paper's run (921 MB; unpacks to `probing_features/`, pass it as `--cache-dir`). Running the probes on
   them reproduces the paper's probe results exactly for all 14 encoders (observed metrics, baselines,
   and consistency analyses; for SigLIP-2 also the 1,000-permutation null means and 95th percentiles).

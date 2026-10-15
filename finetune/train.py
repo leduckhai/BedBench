@@ -48,7 +48,7 @@ def collate(examples: list[dict], processor, instruction: str, max_length: int) 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dataset", required=True, help="save_to_disk directory with train and validation splits, or the BED dataset repo id")
+    ap.add_argument("--dataset", required=True, help="save_to_disk directory with train and validation splits, or the BedBench dataset repo id")
     ap.add_argument("--model", default="Qwen/Qwen3.5-27B")
     ap.add_argument("--output-dir", required=True)
     ap.add_argument("--epochs", type=float, default=3)

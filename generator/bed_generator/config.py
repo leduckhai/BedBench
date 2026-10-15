@@ -1,4 +1,4 @@
-"""Generator configuration. Defaults reproduce the released BED voxel split."""
+"""Generator configuration. Defaults reproduce the released BedBench voxel split."""
 from __future__ import annotations
 
 from dataclasses import dataclass

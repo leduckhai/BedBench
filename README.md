@@ -1,11 +1,11 @@
-# BED: code release
+# BedBench: code release
 
-Code for *Where Do Vision-Language Models Fail at 3D Reasoning?* BED poses 13 tasks (T1–T13) on rendered
+Code for *Where Do Vision-Language Models Fail at 3D Reasoning?* BedBench poses 13 tasks (T1–T13) on rendered
 views of 100 procedurally generated voxel objects (T1–T12) and 100 multi-object scenes (T13).
 
-The data live in the BED dataset repository on Hugging Face, written `DATASET_REPO` below:
+The data live in the Hugging Face dataset repository [`wnkh/BedBench`](https://huggingface.co/datasets/wnkh/BedBench):
 
-| In `DATASET_REPO` | Contents |
+| In `wnkh/BedBench` | Contents |
 |---|---|
 | configurations `T1_uncolor` … `T13_valid_color` | the 34 evaluation sets (one task under one visual condition) |
 | configuration `T5_finetune` | the T5 fine-tuning pool (800 train / 100 validation objects) |
@@ -31,7 +31,7 @@ Each directory has its own README and `requirements.txt`. The paper's runs used 
 
 ```bash
 cd harness && pip install -r requirements.txt
-huggingface-cli download DATASET_REPO extras/outputs.tar.gz --repo-type dataset --local-dir ..
+huggingface-cli download wnkh/BedBench extras/outputs.tar.gz --repo-type dataset --local-dir ..
 tar xzf ../extras/outputs.tar.gz -C ..
 python -m bed_eval score ../outputs --json summary.json
 ```
@@ -45,7 +45,7 @@ python -m bed_eval score ../outputs --json summary.json
 ```bash
 cd harness
 python -m bed_eval run --task T5 --mode thinking --model Qwen/Qwen3.5-27B \
-    --api-url http://localhost:8000 --dataset DATASET_REPO --runs 5 --out results
+    --api-url http://localhost:8000 --dataset wnkh/BedBench --runs 5 --out results
 python -m bed_eval score results
 ```
 
@@ -64,7 +64,7 @@ and post-hoc analysis scripts are not included in the existing outputs export.
   pixel-identically ([`generator/README.md`](generator/README.md)).
 - **Probing.** `extras/probing_features.tar` unpacks to `probing_features/`; pass it as `--cache-dir` to
   rerun the probes on CPU without re-extracting features ([`probing/README.md`](probing/README.md)).
-- **Fine-tuning.** `python finetune/train.py --dataset DATASET_REPO --output-dir t5_lora` trains on the
+- **Fine-tuning.** `python finetune/train.py --dataset wnkh/BedBench --output-dir t5_lora` trains on the
   `T5_finetune` configuration ([`finetune/README.md`](finetune/README.md)).
 - **Human baseline and traces.** Self-contained in `human/` and `traces/`.
 

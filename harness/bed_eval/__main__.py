@@ -1,4 +1,4 @@
-r"""BED evaluation harness.
+r"""BedBench evaluation harness.
 
   python -m bed_eval run   --task T5 --variant color --mode thinking --model Qwen/Qwen3.5-27B \
                            --api-url http://localhost:8000 --dataset DATASET --runs 5 --out results

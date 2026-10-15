@@ -1,4 +1,4 @@
-# BED evaluation harness
+# BedBench evaluation harness
 
 Queries a model through any OpenAI-compatible endpoint (vLLM for the open-weight models, see
 [serving.md](serving.md)), saves one JSONL record per question, and scores the results the same way as

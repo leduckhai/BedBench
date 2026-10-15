@@ -1,4 +1,4 @@
-"""Vision-encoder registry for BED probing.
+"""Vision-encoder registry for BedBench probing.
 
 Each encoder yields two representations per image:
   - ``pooled``: the encoder's own pooled/CLS embedding
