@@ -150,7 +150,7 @@ h1 em { font-family: var(--title-x); font-style: normal; color: var(--accent); }
 
 .plate { padding: 3px; background: var(--chip-line); clip-path: var(--px); }  /* 3px pixel frame */
 .plate img { clip-path: var(--px); }
-/* Hover effects live only on the benchmark figure (.tile.on below). */
+/* Hover effects live only on the benchmark figure (.tile.on) and the human-gap chart (.row). */
 figure { margin: 0; }
 figcaption { margin-top: 12px; font-size: 0.92rem; color: var(--muted); line-height: 1.5; }
 figcaption b { color: var(--fg); }
@@ -378,10 +378,10 @@ body { position: relative; }  /* side-tiles share the grid's origin */
 .group:first-child { margin-top: 0; }
 /* Row hover/focus: dim the other rows, frame this track, open a line with the exact numbers. */
 .row { outline: none; transition: opacity .18s steps(3); }
-.rows:has(.row:focus) .row:not(:focus) { opacity: .35; }  /* dim only while a row is active */
-.row:focus .track { box-shadow: 0 0 0 2px var(--accent); }
+.rows:has(.row:hover) .row:not(:hover), .rows:has(.row:focus) .row:not(:focus) { opacity: .35; }  /* dim only while a row is active */
+.row:hover .track, .row:focus .track { box-shadow: 0 0 0 2px var(--accent); }
 .row .info { grid-column: 2 / 4; max-height: 0; overflow: hidden; font: 0.78rem/1.5 var(--mono); color: var(--fg); transition: max-height .18s steps(3); }
-.row:focus .info { max-height: 3em; }
+.row:hover .info, .row:focus .info { max-height: 3em; }
 .info .k-h { color: var(--human); } .info .k-o { color: var(--ow); } .info .k-f { color: var(--fr); } .info .k-c { color: var(--const-ink); }
 .info b { display: none; } .info i { font-style: normal; }
 /* Wide screens: the numbers show as a card in the right margin beside the hovered row. */
@@ -390,7 +390,7 @@ body { position: relative; }  /* side-tiles share the grid's origin */
   .row .info { position: absolute; left: calc(100% + 18px); top: 50%; transform: translateY(-50%); width: 230px; max-height: none;
     padding: 10px 12px; background: var(--surface); box-shadow: 0 0 0 2px var(--accent); opacity: 0; pointer-events: none;
     transition: opacity .18s steps(3); z-index: 2; }
-  .row:focus .info { opacity: 1; max-height: none; overflow: visible; }  /* override the 3em cap used below 1320px */
+  .row:hover .info, .row:focus .info { opacity: 1; max-height: none; overflow: visible; }  /* override the 3em cap used below 1320px */
   .info b { display: block; font-family: var(--heading); font-weight: 400; font-size: .95rem; color: var(--accent); margin-bottom: 2px; }
   .info span { display: block; } .info .sep { display: none; }
 }
