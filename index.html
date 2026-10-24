@@ -1093,6 +1093,9 @@ showAnn(0);
   let t; const redraw = () => { clearTimeout(t); t = setTimeout(draw, 150); };
   window.addEventListener("resize", redraw);
   window.addEventListener("load", draw);
+  // Content loaded later (Try-it questions, tab switches) changes the page height: redraw so tiles reach the end.
+  let lastH = 0;
+  if ("ResizeObserver" in window) new ResizeObserver(() => { const h = document.body.scrollHeight; if (Math.abs(h - lastH) > G) { lastH = h; redraw(); } }).observe(document.body);
   draw();
 })();
 
