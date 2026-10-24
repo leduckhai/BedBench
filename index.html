@@ -109,7 +109,7 @@ p { margin: 0; }
 /* Hero */
 header { padding-block: 64px 8px; text-align: center; }
 .venue { display: inline-flex; gap: 6px; align-items: center; font: 600 0.78rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
-.voxels { display: inline-grid; grid-template-rows: repeat(2, 8px); grid-auto-flow: column; grid-auto-columns: 8px; gap: 2px; }
+.voxels { display: inline-grid; grid-template-columns: repeat(4, 8px); grid-auto-rows: 8px; gap: 2px; }  /* 3 rows x 4, same layout as the favicon */
 .voxels i { width: 8px; height: 8px; display: block; }
 h1 { font-family: var(--title); font-size: clamp(2rem, 5.4vw, 3.7rem); font-weight: 400; line-height: 1.1; margin: 18px auto 0; color: var(--fg); }
 h1 > span { display: block; }  /* two lines: "...Models" / "Fail at 3D Reasoning?"; wraps further only on phones */
@@ -329,7 +329,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .topnav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .topnav-in { max-width: 1080px; margin-inline: auto; display: flex; align-items: center; gap: 20px; height: 52px; }
 .brand { display: inline-flex; align-items: center; gap: 8px; font: 400 1.15rem/1 var(--title-x); color: var(--accent); text-decoration: none; flex: none; }
-.brand .voxels { grid-template-rows: repeat(2, 6px); grid-auto-columns: 6px; gap: 1px; }
+.brand .voxels { grid-template-columns: repeat(4, 6px); grid-auto-rows: 6px; gap: 1px; }
 .brand .voxels i { width: 6px; height: 6px; }
 .nav-links { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; margin-left: auto; }
 .nav-links::-webkit-scrollbar { display: none; }
