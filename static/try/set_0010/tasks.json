@@ -1,0 +1,281 @@
+{
+ "source": "set_0010",
+ "tasks": [
+  {
+   "id": "T1",
+   "name": "Volume",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. Your task is to count the total number of blocks that make up the 3D object.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T1_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T1_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 15
+  },
+  {
+   "id": "T2",
+   "name": "Packaging",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles, along with a 3D boundary defined by its dimensions. Your task is to determine whether the object can fit in the boundary in any possible orientation.\n\nBoundary: 1 \u00d7 2 \u00d7 5",
+   "images": [
+    {
+     "src": "static/try/set_0010/T2_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T2_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T3",
+   "name": "Difference",
+   "type": "triple_int",
+   "prompt": "You are given four perspective images representing two different 3D objects (two views per object). Your task is to analyze both objects and determine the difference in their block compositions.\n\nNote: 'Shared' is the number of block-positions occupied by both objects, 'Only in A' is blocks only in the first two images, 'Only in B' is blocks only in the last two images.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T3_0.png",
+     "label": "Object A, view 1"
+    },
+    {
+     "src": "static/try/set_0010/T3_1.png",
+     "label": "Object A, view 2"
+    },
+    {
+     "src": "static/try/set_0010/T3_2.png",
+     "label": "Object B, view 1"
+    },
+    {
+     "src": "static/try/set_0010/T3_3.png",
+     "label": "Object B, view 2"
+    }
+   ],
+   "candidates": [],
+   "answer": [
+    6,
+    6,
+    9
+   ]
+  },
+  {
+   "id": "T4",
+   "name": "Color Count",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to count the number of unique colors in the object. Only consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T4_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T4_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 9
+  },
+  {
+   "id": "T5",
+   "name": "Color Distribution",
+   "type": "color_dist",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to give the color distribution in the object. Only consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T5_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T5_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": {
+    "gold": 1,
+    "orange": 2,
+    "slategray": 1,
+    "teal": 1,
+    "red": 1,
+    "magenta": 1,
+    "yellow": 2,
+    "cyan": 2,
+    "green": 1,
+    "purple": 1,
+    "blue": 1,
+    "orchid": 1
+   }
+  },
+  {
+   "id": "T6",
+   "name": "Local Structure",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to determine whether the object has at least one column (vertical stack of blocks) with a height greater than 3.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T6_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T6_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T7",
+   "name": "Color Dominance",
+   "type": "color_list",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to determine the dominant color(s) in the object \u2014 the color(s) with the highest block count.\n\nOnly consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T7_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T7_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": [
+    "purple"
+   ]
+  },
+  {
+   "id": "T8",
+   "name": "Silhouette Symmetry",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to determine whether the object's silhouette is symmetric (vertically or horizontally).\n\nOnly consider blocks that are physically present in the object. Do not count shading or lighting variations.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T8_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T8_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T9",
+   "name": "Visible Floors",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to count the number of visible layers (floors/horizontal levels) in the object.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T9_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T9_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 3
+  },
+  {
+   "id": "T10",
+   "name": "Color Connected",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to determine whether there exists at least one pair of adjacent blocks (sharing a face) that share the same color.\n\nOnly consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T10_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T10_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T11",
+   "name": "Projection",
+   "type": "mcq3",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles and three candidate 2D orthographic projection images. The projections correspond to the three principal planes: XY (top view), YZ (side view), and ZX (front view) in a randomized order. However, only one of the projections is incorrect and does NOT belong to the object. Your task is to identify the invalid projection.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T11_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T11_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0010/T11_cand0.png",
+    "static/try/set_0010/T11_cand1.png",
+    "static/try/set_0010/T11_cand2.png"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "T12",
+   "name": "Reconstruct",
+   "type": "mcq2",
+   "prompt": "You are given 5 images in the following order:\n- Image 1, 2, 3: Silhouettes\n- Image 4: Candidate View 0\n- Image 5: Candidate View 1\n\nThe three silhouettes all belong to the same 3D object. One of the two candidate views correctly represents that object (positive); the other belongs to a different object (negative). Your task is to identify the positive view.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T12_0.png",
+     "label": "Silhouette 1"
+    },
+    {
+     "src": "static/try/set_0010/T12_1.png",
+     "label": "Silhouette 2"
+    },
+    {
+     "src": "static/try/set_0010/T12_2.png",
+     "label": "Silhouette 3"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0010/T12_cand0.png",
+    "static/try/set_0010/T12_cand1.png"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "T13",
+   "name": "Mixture-of-Shapes",
+   "type": "mcq3",
+   "prompt": "You are given two perspective images of the same 3D scene from different viewing angles and three candidate 2D orthographic silhouettes of that scene. Each scene contains multiple 3D objects (boxes, cylinders, etc.) arranged together. Two of the silhouettes belong to the scene; one does not. Your task is to identify the invalid silhouette.",
+   "images": [
+    {
+     "src": "static/try/set_0010/T13_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0010/T13_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0010/T13_cand0.png",
+    "static/try/set_0010/T13_cand1.png",
+    "static/try/set_0010/T13_cand2.png"
+   ],
+   "answer": 1
+  }
+ ]
+}

@@ -1,0 +1,276 @@
+{
+ "source": "set_0020",
+ "tasks": [
+  {
+   "id": "T1",
+   "name": "Volume",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. Your task is to count the total number of blocks that make up the 3D object.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 \u0111\u1ebfm t\u1ed5ng s\u1ed1 kh\u1ed1i t\u1ea1o n\u00ean v\u1eadt th\u1ec3 3D \u0111\u00f3.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T1_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T1_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 13
+  },
+  {
+   "id": "T2",
+   "name": "Packaging",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles, along with a 3D boundary defined by its dimensions. Your task is to determine whether the object can fit in the boundary in any possible orientation.\n\nBoundary: 5 \u00d7 5 \u00d7 5\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau, c\u00f9ng v\u1edbi m\u1ed9t kh\u00f4ng gian gi\u1edbi h\u1ea1n 3D \u0111\u01b0\u1ee3c x\u00e1c \u0111\u1ecbnh b\u1edfi k\u00edch th\u01b0\u1edbc c\u1ee7a n\u00f3. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh li\u1ec7u v\u1eadt th\u1ec3 c\u00f3 th\u1ec3 v\u1eeba v\u1eb7n trong kh\u00f4ng gian gi\u1edbi h\u1ea1n \u0111\u00f3 \u1edf b\u1ea5t k\u1ef3 h\u01b0\u1edbng n\u00e0o kh\u00f4ng.\n\nKh\u00f4ng gian gi\u1edbi h\u1ea1n: 5 \u00d7 5 \u00d7 5",
+   "images": [
+    {
+     "src": "static/try/set_0020/T2_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T2_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": true
+  },
+  {
+   "id": "T3",
+   "name": "Difference",
+   "type": "triple_int",
+   "prompt": "You are given four perspective images representing two different 3D objects (two views per object). Your task is to analyze both objects and determine the difference in their block compositions.\n\nNote: 'Shared' is the number of block-positions occupied by both objects, 'Only in A' is blocks only in the first two images, 'Only in B' is blocks only in the last two images.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p b\u1ed1n h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh \u0111\u1ea1i di\u1ec7n cho hai v\u1eadt th\u1ec3 3D kh\u00e1c nhau (hai g\u00f3c nh\u00ecn m\u1ed7i v\u1eadt th\u1ec3). Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 ph\u00e2n t\u00edch c\u1ea3 hai v\u1eadt th\u1ec3 v\u00e0 x\u00e1c \u0111\u1ecbnh s\u1ef1 kh\u00e1c bi\u1ec7t trong th\u00e0nh ph\u1ea7n kh\u1ed1i.\n\nL\u01b0u \u00fd: 'Chung' l\u00e0 s\u1ed1 v\u1ecb tr\u00ed kh\u1ed1i thu\u1ed9c c\u1ea3 hai v\u1eadt th\u1ec3, 'Ch\u1ec9 trong A' l\u00e0 kh\u1ed1i ch\u1ec9 xu\u1ea5t hi\u1ec7n \u1edf hai \u1ea3nh \u0111\u1ea7u, 'Ch\u1ec9 trong B' l\u00e0 kh\u1ed1i ch\u1ec9 xu\u1ea5t hi\u1ec7n \u1edf hai \u1ea3nh cu\u1ed1i.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T3_0.png",
+     "label": "Object A, view 1"
+    },
+    {
+     "src": "static/try/set_0020/T3_1.png",
+     "label": "Object A, view 2"
+    },
+    {
+     "src": "static/try/set_0020/T3_2.png",
+     "label": "Object B, view 1"
+    },
+    {
+     "src": "static/try/set_0020/T3_3.png",
+     "label": "Object B, view 2"
+    }
+   ],
+   "candidates": [],
+   "answer": [
+    4,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "T4",
+   "name": "Color Count",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to count the number of unique colors in the object. Only consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i c\u00f3 m\u00e0u s\u1eafc kh\u00e1c nhau. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 \u0111\u1ebfm s\u1ed1 m\u00e0u s\u1eafc duy nh\u1ea5t trong v\u1eadt th\u1ec3. Ch\u1ec9 x\u00e9t c\u00e1c m\u00e0u: v\u00e0ng (yellow), xanh nh\u1ea1t (cyan), xanh l\u00e1 (green), h\u1ed3ng t\u00edm (magenta), \u0111\u1ecf (red), cam (orange), t\u00edm lan (orchid), xanh ng\u1ecdc (teal), x\u00e1m (slategray), v\u00e0ng \u0111\u1eadm (gold), xanh d\u01b0\u01a1ng (blue), t\u00edm (purple). Kh\u00f4ng t\u00ednh bi\u1ebfn th\u1ec3 b\u00f3ng \u0111\u1ed5 ho\u1eb7c \u00e1nh s\u00e1ng.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T4_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T4_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 9
+  },
+  {
+   "id": "T5",
+   "name": "Color Distribution",
+   "type": "color_dist",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to give the color distribution in the object. Only consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i c\u00f3 m\u00e0u s\u1eafc kh\u00e1c nhau. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 cho bi\u1ebft ph\u00e2n ph\u1ed1i m\u00e0u s\u1eafc trong v\u1eadt th\u1ec3. Ch\u1ec9 x\u00e9t c\u00e1c m\u00e0u: v\u00e0ng (yellow), xanh nh\u1ea1t (cyan), xanh l\u00e1 (green), h\u1ed3ng t\u00edm (magenta), \u0111\u1ecf (red), cam (orange), t\u00edm lan (orchid), xanh ng\u1ecdc (teal), x\u00e1m (slategray), v\u00e0ng \u0111\u1eadm (gold), xanh d\u01b0\u01a1ng (blue), t\u00edm (purple). Kh\u00f4ng t\u00ednh bi\u1ebfn th\u1ec3 b\u00f3ng \u0111\u1ed5 ho\u1eb7c \u00e1nh s\u00e1ng.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T5_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T5_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": {
+    "magenta": 3,
+    "red": 3,
+    "blue": 1,
+    "purple": 1,
+    "green": 1,
+    "gold": 1,
+    "teal": 1
+   }
+  },
+  {
+   "id": "T6",
+   "name": "Local Structure",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to determine whether the object has at least one column (vertical stack of blocks) with a height greater than 3.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh li\u1ec7u v\u1eadt th\u1ec3 c\u00f3 \u00edt nh\u1ea5t m\u1ed9t c\u1ed9t (ch\u1ed3ng kh\u1ed1i theo chi\u1ec1u d\u1ecdc) v\u1edbi chi\u1ec1u cao l\u1edbn h\u01a1n 3 hay kh\u00f4ng.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T6_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T6_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T7",
+   "name": "Color Dominance",
+   "type": "color_list",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to determine the dominant color(s) in the object \u2014 the color(s) with the highest block count.\n\nOnly consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i c\u00f3 m\u00e0u s\u1eafc kh\u00e1c nhau. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh m\u00e0u s\u1eafc chi\u1ebfm \u01b0u th\u1ebf trong v\u1eadt th\u1ec3 \u2014 m\u00e0u c\u00f3 s\u1ed1 l\u01b0\u1ee3ng kh\u1ed1i nhi\u1ec1u nh\u1ea5t.\n\nCh\u1ec9 x\u00e9t c\u00e1c m\u00e0u: v\u00e0ng (yellow), xanh nh\u1ea1t (cyan), xanh l\u00e1 (green), h\u1ed3ng t\u00edm (magenta), \u0111\u1ecf (red), cam (orange), t\u00edm lan (orchid), xanh ng\u1ecdc (teal), x\u00e1m (slategray), v\u00e0ng \u0111\u1eadm (gold), xanh d\u01b0\u01a1ng (blue), t\u00edm (purple). Kh\u00f4ng t\u00ednh bi\u1ebfn th\u1ec3 b\u00f3ng \u0111\u1ed5.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T7_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T7_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": [
+    "orchid"
+   ]
+  },
+  {
+   "id": "T8",
+   "name": "Silhouette Symmetry",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to determine whether the object's silhouette is symmetric (vertically or horizontally).\n\nOnly consider blocks that are physically present in the object. Do not count shading or lighting variations.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh li\u1ec7u b\u00f3ng c\u1ee7a v\u1eadt th\u1ec3 c\u00f3 \u0111\u1ed1i x\u1ee9ng (theo chi\u1ec1u d\u1ecdc ho\u1eb7c chi\u1ec1u ngang) hay kh\u00f4ng.\n\nCh\u1ec9 x\u00e9t c\u00e1c kh\u1ed1i th\u1ef1c s\u1ef1 c\u00f3 m\u1eb7t trong v\u1eadt th\u1ec3. Kh\u00f4ng t\u00ednh bi\u1ebfn th\u1ec3 b\u00f3ng \u0111\u1ed5 ho\u1eb7c \u00e1nh s\u00e1ng.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T8_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T8_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": true
+  },
+  {
+   "id": "T9",
+   "name": "Visible Floors",
+   "type": "int",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks. Your task is to count the number of visible layers (floors/horizontal levels) in the object.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 \u0111\u1ebfm s\u1ed1 l\u1edbp (t\u1ea7ng/m\u1ee9c ngang) c\u00f3 th\u1ec3 nh\u00ecn th\u1ea5y trong v\u1eadt th\u1ec3.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T9_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T9_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": 5
+  },
+  {
+   "id": "T10",
+   "name": "Color Connected",
+   "type": "bool",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles. The object is composed of blocks with different colors. Your task is to determine whether there exists at least one pair of adjacent blocks (sharing a face) that share the same color.\n\nOnly consider colors from the predefined set: yellow, cyan, green, magenta, red, orange, orchid, teal, slategray, gold, blue, purple. Do not count shading or lighting variations as separate colors.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau. V\u1eadt th\u1ec3 \u0111\u01b0\u1ee3c t\u1ea1o th\u00e0nh t\u1eeb c\u00e1c kh\u1ed1i c\u00f3 m\u00e0u s\u1eafc kh\u00e1c nhau. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh li\u1ec7u c\u00f3 t\u1ed3n t\u1ea1i \u00edt nh\u1ea5t m\u1ed9t c\u1eb7p kh\u1ed1i k\u1ec1 nhau (chung m\u1ed9t m\u1eb7t) c\u00f3 c\u00f9ng m\u00e0u hay kh\u00f4ng.\n\nCh\u1ec9 x\u00e9t c\u00e1c m\u00e0u: v\u00e0ng, xanh nh\u1ea1t, xanh l\u00e1, h\u1ed3ng t\u00edm, \u0111\u1ecf, cam, t\u00edm lan, xanh ng\u1ecdc, x\u00e1m, v\u00e0ng \u0111\u1eadm, xanh d\u01b0\u01a1ng, t\u00edm. Kh\u00f4ng t\u00ednh bi\u1ebfn th\u1ec3 b\u00f3ng \u0111\u1ed5.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T10_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T10_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [],
+   "answer": false
+  },
+  {
+   "id": "T11",
+   "name": "Projection",
+   "type": "mcq3",
+   "prompt": "You are given two perspective images of the same 3D object from different viewing angles and three candidate 2D orthographic projection images. The projections correspond to the three principal planes: XY (top view), YZ (side view), and ZX (front view) in a randomized order. However, only one of the projections is incorrect and does NOT belong to the object. Your task is to identify the invalid projection.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau v\u00e0 ba h\u00ecnh chi\u1ebfu tr\u1ef1c giao 2D. C\u00e1c h\u00ecnh chi\u1ebfu t\u01b0\u01a1ng \u1ee9ng v\u1edbi ba m\u1eb7t ph\u1eb3ng ch\u00ednh: XY (nh\u00ecn t\u1eeb tr\u00ean), YZ (nh\u00ecn t\u1eeb b\u00ean), v\u00e0 ZX (nh\u00ecn t\u1eeb tr\u01b0\u1edbc) theo th\u1ee9 t\u1ef1 ng\u1eabu nhi\u00ean. Tuy nhi\u00ean, ch\u1ec9 c\u00f3 m\u1ed9t h\u00ecnh chi\u1ebfu l\u00e0 sai v\u00e0 KH\u00d4NG thu\u1ed9c v\u1ec1 v\u1eadt th\u1ec3. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh h\u00ecnh chi\u1ebfu kh\u00f4ng h\u1ee3p l\u1ec7.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T11_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T11_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0020/T11_cand0.png",
+    "static/try/set_0020/T11_cand1.png",
+    "static/try/set_0020/T11_cand2.png"
+   ],
+   "answer": 2
+  },
+  {
+   "id": "T12",
+   "name": "Reconstruct",
+   "type": "mcq2",
+   "prompt": "You are given 5 images in the following order:\n- Image 1, 2, 3: Silhouettes\n- Image 4: Candidate View 0\n- Image 5: Candidate View 1\n\nThe three silhouettes all belong to the same 3D object. One of the two candidate views correctly represents that object (positive); the other belongs to a different object (negative). Your task is to identify the positive view.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p 5 h\u00ecnh \u1ea3nh theo th\u1ee9 t\u1ef1 sau:\n- H\u00ecnh 1, 2, 3: B\u00f3ng h\u00ecnh (Silhouette)\n- H\u00ecnh 4: G\u00f3c nh\u00ecn \u1ee9ng vi\u00ean 0\n- H\u00ecnh 5: G\u00f3c nh\u00ecn \u1ee9ng vi\u00ean 1\n\nBa b\u00f3ng h\u00ecnh \u0111\u1ec1u thu\u1ed9c c\u00f9ng m\u1ed9t v\u1eadt th\u1ec3 3D. M\u1ed9t trong hai g\u00f3c nh\u00ecn \u1ee9ng vi\u00ean th\u1ec3 hi\u1ec7n \u0111\u00fang v\u1eadt th\u1ec3 \u0111\u00f3 (d\u01b0\u01a1ng t\u00ednh); c\u00e1i c\u00f2n l\u1ea1i thu\u1ed9c v\u1ec1 m\u1ed9t v\u1eadt th\u1ec3 kh\u00e1c (\u00e2m t\u00ednh). Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh g\u00f3c nh\u00ecn \u0111\u00fang.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T12_0.png",
+     "label": "Silhouette 1"
+    },
+    {
+     "src": "static/try/set_0020/T12_1.png",
+     "label": "Silhouette 2"
+    },
+    {
+     "src": "static/try/set_0020/T12_2.png",
+     "label": "Silhouette 3"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0020/T12_cand0.png",
+    "static/try/set_0020/T12_cand1.png"
+   ],
+   "answer": 0
+  },
+  {
+   "id": "T13",
+   "name": "Mixture-of-Shapes",
+   "type": "mcq3",
+   "prompt": "You are given two perspective images of the same 3D scene from different viewing angles and three candidate 2D orthographic silhouettes of that scene. Each scene contains multiple 3D objects (boxes, cylinders, etc.) arranged together. Two of the silhouettes belong to the scene; one does not. Your task is to identify the invalid silhouette.\nVN: B\u1ea1n \u0111\u01b0\u1ee3c cung c\u1ea5p hai h\u00ecnh \u1ea3nh ph\u1ed1i c\u1ea3nh c\u1ee7a c\u00f9ng m\u1ed9t c\u1ea3nh 3D t\u1eeb c\u00e1c g\u00f3c nh\u00ecn kh\u00e1c nhau v\u00e0 ba b\u00f3ng h\u00ecnh tr\u1ef1c giao 2D \u1ee9ng vi\u00ean c\u1ee7a c\u1ea3nh \u0111\u00f3. M\u1ed7i c\u1ea3nh ch\u1ee9a nhi\u1ec1u v\u1eadt th\u1ec3 3D (h\u1ed9p, h\u00ecnh tr\u1ee5, v.v.) \u0111\u01b0\u1ee3c s\u1eafp x\u1ebfp c\u00f9ng nhau. Hai trong s\u1ed1 c\u00e1c b\u00f3ng h\u00ecnh thu\u1ed9c v\u1ec1 c\u1ea3nh; m\u1ed9t c\u00e1i th\u00ec kh\u00f4ng. Nhi\u1ec7m v\u1ee5 c\u1ee7a b\u1ea1n l\u00e0 x\u00e1c \u0111\u1ecbnh b\u00f3ng h\u00ecnh kh\u00f4ng h\u1ee3p l\u1ec7.",
+   "images": [
+    {
+     "src": "static/try/set_0020/T13_0.png",
+     "label": "View 1"
+    },
+    {
+     "src": "static/try/set_0020/T13_1.png",
+     "label": "View 2"
+    }
+   ],
+   "candidates": [
+    "static/try/set_0020/T13_cand0.png",
+    "static/try/set_0020/T13_cand1.png",
+    "static/try/set_0020/T13_cand2.png"
+   ],
+   "answer": 1
+  }
+ ]
+}

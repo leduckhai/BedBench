@@ -439,12 +439,15 @@ section .finding p + p { margin-top: 10px; }
 .tab {
   font: 600 0.8rem/1 var(--mono); padding: 9px 11px; cursor: pointer; color: var(--fg);
 }
-.tab[aria-selected="true"] { --frame: var(--fg); --fill: var(--fg); color: var(--bg); }
+.tab[aria-selected="true"], .tab[aria-pressed="true"] { --frame: var(--fg); --fill: var(--fg); color: var(--bg); }
 .tab[data-result="ok"]::after, .tab[data-result="no"]::after {
   content: ""; position: absolute; top: 4px; right: 4px; width: 6px; height: 6px;
 }
 .tab[data-result="ok"]::after { background: var(--good); }
 .tab[data-result="no"]::after { background: var(--bad); }
+.tabs.sets { margin-top: 18px; align-items: center; }
+.tabs.sets + .tabs { margin-top: 10px; }
+.sets-label { font: 600 0.75rem/1 var(--mono); color: var(--muted); margin-right: 6px; }
 .score { font: 0.8rem/1 var(--mono); color: var(--muted); margin-left: auto; align-self: center; }
 /* Try-it card reuses the reasoning panel (.ex box, .ex-head title); only the full task prompt stays upright and left-aligned. */
 .try .ex-head small { font: 600 0.75rem/1 var(--mono); color: var(--muted); }
@@ -501,7 +504,8 @@ button.swatch[aria-pressed="true"] { --frame: var(--accent); --bw: 3px; }
 .bib { position: relative; margin-top: 18px; }
 pre { margin: 0; overflow-x: auto; padding: 18px 20px; border-radius: 12px; background: var(--surface); font: 0.8rem/1.6 var(--mono); color: var(--fg); }
 .copy { position: absolute; top: 10px; right: 10px; padding: 6px 12px; font: 600 0.75rem/1 var(--mono); border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
-#bibtex { margin-bottom: 72px; }  /* last section: keep breathing room at the page end (no footer) */
+footer { margin: 72px auto 0; padding: 0 16px 40px; text-align: center; font: 0.8rem/1.5 var(--mono); color: var(--muted); }
+footer a { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -820,6 +824,7 @@ pre { margin: 0; overflow-x: auto; padding: 18px 20px; border-radius: 12px; back
 
 <section class="col" id="try">
   <h2>Now, try BedBench yourself?</h2>
+  <div class="tabs sets" role="group" aria-label="Sample sets" id="try-sets"><span class="sets-label">Sample set</span></div>
   <div class="tabs" role="tablist" aria-label="Tasks" id="try-tabs"><span class="score" id="try-score"></span></div>
   <div class="try ex" id="try-panel" role="tabpanel" aria-live="polite">
     <p>Loading the questions…</p>
@@ -841,6 +846,8 @@ pre { margin: 0; overflow-x: auto; padding: 18px 20px; border-radius: 12px; back
 }</pre>
   </div>
 </section>
+
+<footer>Developed by <a href="https://github.com/whynotkimhari">Nguyen Kim Hai Bui</a></footer>
 
 <script>
 // Figure 2 data: [id, name, human, CI lo, CI hi, best OW, best frontier, best constant, random baseline, gap OW, gap Fr].
@@ -1263,18 +1270,35 @@ function updateScore() {
   scoreEl.textContent = done.length ? `${done.filter(Boolean).length} / ${done.length} correct` : "";
 }
 
-fetch("static/try/tasks.json")
-  .then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); })
-  .then((d) => {
+// Sample sets: each is one human-evaluation question set (13 tasks); switching sets resets the score.
+const setsEl = document.getElementById("try-sets");
+const loadFail = () => panel.replaceChildren(el("p", {}, "The questions could not be loaded. Open the page through a web server (for example GitHub Pages) rather than as a local file."));
+const getJSON = (url) => fetch(url).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+function loadSet(k, sets) {
+  [...setsEl.querySelectorAll(".tab")].forEach((b, j) => b.setAttribute("aria-pressed", String(j === k)));
+  getJSON(`static/try/${sets[k]}/tasks.json`).then((d) => {
     TASKS = d.tasks;
+    Object.keys(results).forEach((key) => delete results[key]);
+    tabs.querySelectorAll(".tab").forEach((b) => b.remove());
     TASKS.forEach((t, i) => {
       const b = el("button", { type: "button", class: "tab", role: "tab", "data-id": t.id, title: t.name }, t.id);
       b.onclick = () => show(i);
       tabs.insertBefore(b, scoreEl);
     });
-    show(0);
-  })
-  .catch(() => { panel.replaceChildren(el("p", {}, "The questions could not be loaded. Open the page through a web server (for example GitHub Pages) rather than as a local file.")); });
+    updateScore();
+    show(Math.min(current, TASKS.length - 1));
+    // Warm the cache for this set's other tasks.
+    TASKS.forEach((t) => [...t.images.map((im) => im.src), ...t.candidates].forEach((u) => { new Image().src = u; }));
+  }).catch(loadFail);
+}
+getJSON("static/try/sets.json").then(({ sets }) => {
+  sets.forEach((_, k) => {
+    const b = el("button", { type: "button", class: "tab", "aria-pressed": "false", title: `Sample set ${k + 1} of ${sets.length}` }, String(k + 1));
+    b.onclick = () => loadSet(k, sets);
+    setsEl.append(b);
+  });
+  loadSet(0, sets);
+}).catch(loadFail);
 
 document.getElementById("copy-bib").addEventListener("click", (e) => {
   const btn = e.currentTarget;
@@ -1294,12 +1318,9 @@ document.getElementById("copy-bib").addEventListener("click", (e) => {
 <script>
 // Counts are never negative.
 document.addEventListener("input", (e) => { const t = e.target; if (t.type === "number" && Number(t.value) < 0) t.value = "0"; });
-// Warm the cache for images that only appear after a tab click (examples, traces, Try-it).
+// Warm the cache for images that only appear after a tab click (examples, traces); Try-it preloads per set.
 addEventListener("load", () => {
-  const urls = new Set(document.documentElement.innerHTML.match(/static\/[\w\/.-]+\.png/g));
-  fetch("static/try/tasks.json").then(r => r.json()).then(d => {
-    d.tasks.forEach(t => { t.images.forEach(i => urls.add(i.src)); t.candidates.forEach(c => urls.add(c)); });
-  }).catch(() => {}).finally(() => urls.forEach(u => { new Image().src = u; }));
+  new Set(document.documentElement.innerHTML.match(/static\/[\w\/.-]+\.png/g)).forEach((u) => { new Image().src = u; });
 });
 </script>
 </body>
