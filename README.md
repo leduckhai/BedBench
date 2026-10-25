@@ -68,6 +68,10 @@ and post-hoc analysis scripts are not included in the existing outputs export.
   `T5_finetune` configuration ([`finetune/README.md`](finetune/README.md)).
 - **Human baseline and traces.** Self-contained in `human/` and `traces/`.
 
+## Developer
+
+Main developer: [Nguyen Kim Hai Bui](https://whynotkimhari.github.io) ([GitHub](https://github.com/whynotkimhari)).
+
 ## License
 
 Code: Apache-2.0. Data and human responses: CC BY 4.0.
