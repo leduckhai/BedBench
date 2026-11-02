@@ -1,6 +1,6 @@
 # BedBench: code release
 
-Code for *Where Do Vision-Language Models Fail at 3D Reasoning?* BedBench poses 13 tasks (T1–T13) on rendered
+Code for [*Where Do Vision-Language Models Fail at 3D Reasoning?*](https://arxiv.org/abs/2610.39639) BedBench poses 13 tasks (T1–T13) on rendered
 views of 100 procedurally generated voxel objects (T1–T12) and 100 multi-object scenes (T13).
 
 The data live in the Hugging Face dataset repository [`leduckhai/BedBench`](https://huggingface.co/datasets/leduckhai/BedBench):
