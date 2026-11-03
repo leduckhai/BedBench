@@ -9,8 +9,6 @@
 
 <sub>A controlled benchmark for exact and consistent 3D reasoning in vision-language models</sub>
 
-<br />
-
 <sub>
 <a href="https://scholar.google.com/citations?user=DfAzEe0AAAAJ">Khai Le-Duc</a><sup>1,2,3,★</sup> ·
 <a href="https://scholar.google.com/citations?user=i8k5OBYAAAAJ">Nguyen Kim Hai Bui</a><sup>1,4,★</sup> ·
